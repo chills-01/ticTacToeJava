@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public class Player {
+public interface Player {
+    int getMove(Game game);
+
 }
