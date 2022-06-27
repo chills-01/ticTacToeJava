@@ -3,8 +3,6 @@ import java.util.Scanner;
 public class Driver {
     public static void main(String[] args) {
         Game game = new TicTacToe();
-        int square = new Scanner(System.in).nextInt();
-        System.out.println(square);
     }
 
     /**
@@ -19,10 +17,26 @@ public class Driver {
 
         // X goes first
         char letter = 'X';
-        int move;
+        int square;
         while (game.hasEmptySquares()) {
-            if (letter == 'O') move = oPlayer.getMove(game);
-            else move = xPlayer.getMove(game);
+            if (letter == 'O') square = oPlayer.getMove(game);
+            else square = xPlayer.getMove(game);
+
+            if (game.makeMove(square, letter)) {
+                if (printGame) {
+                    System.out.println(letter + " makes a move to square " + String.valueOf(square));
+                    game.printBoard();
+                    System.out.println(); // empty line
+                }
+
+                // change player move
+                if (letter == 'O') {
+                    letter = 'X';
+                }
+                else {
+                    letter = 'O';
+                }
+            }
 
 
         }
